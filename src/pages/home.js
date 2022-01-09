@@ -2,17 +2,17 @@ import { useState, useRef, useEffect } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { Link, Route, Routes } from 'react-router-dom'
-
 import { SideBar, UserProfile, Pins } from '../components'
 import { readClient } from '../client'
 import { userQuery } from '../utils/data'
 import logo from '../assets/logo.png'
+import { fetchUser } from '../utils/fetch-user'
 
 const Home = () => {
   const [ toggleSideBar, setToggleSideBar ] = useState(false)
   const [ user, setUser ] = useState(null)
   const scrollRef = useRef(null)
-  const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear()
+  const userInfo = fetchUser()
 
   useEffect(() => {
     const query = userQuery(userInfo?.googleId)
