@@ -6,6 +6,7 @@ import { userQuery, userCreatedPinsQuery, userSavedPinsQuery } from '../utils/da
 import { readClient, writeClient } from '../client'
 import MasonryLayout from './masonry-layout'
 import Spinner from './spinner'
+import { fetchUser } from '../utils/fetch-user'
 
 const randomImage = 'https://source.unsplash.com/1600x900/?nature,photography,technology'
 const activeButtonStyle = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none'
@@ -17,6 +18,7 @@ const UserProfile = () => {
   const [ text, setText ] = useState('Created')
   const [ activeButton, setActiveButton ] = useState('created')
   const { userId } = useParams()
+  const userInfo = fetchUser();
   const navigate = useNavigate()
 
   const logout = () => {
@@ -62,7 +64,7 @@ const UserProfile = () => {
               {user?.userName}
             </h1>
             <div className="absolute top-0 z-1 right-0 p-2">
-              {userId === user?._id && (
+              {userId === userInfo.googleId && (
                 <GoogleLogout 
                   clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}
                   render={(renderProps) => (

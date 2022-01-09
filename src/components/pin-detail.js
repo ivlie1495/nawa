@@ -8,6 +8,7 @@ import Spinner from './spinner'
 import { pinDetailMorePinQuery, pinDetailQuery } from '../utils/data'
 
 const PinDetail = ({ user }) => {
+  const [ pinsLoading, setPinsLoading ] = useState(false)
   const [ pins, setPins ] = useState(null)
   const [ pinDetail, setPinDetail ] = useState(null)
   const [ comment, setComment ] = useState([])
@@ -20,9 +21,11 @@ const PinDetail = ({ user }) => {
       setPinDetail(pinDetail[0])
 
       if (pinDetail[0]) {
+        setPinsLoading(true)
         query = pinDetailMorePinQuery(pinDetail[0])
         readClient.fetch(query).then((pins) => {
           setPins(pins)
+          setPinsLoading(false)
         })
       }
     })
@@ -93,7 +96,7 @@ const PinDetail = ({ user }) => {
             </p>
           </div>
           <Link
-            to={`user-profile/${pinDetail?.postedBy?._id}`}
+            to={`/user-profile/${pinDetail?.postedBy?._id}`}
             className="flex gap-2 mt-5 items-center bg-white rounded-lg"
           >
             <img className="w-8 h-8 rounded-full object-cover" src={pinDetail?.postedBy?.image} alt="user-profile" />
@@ -124,8 +127,8 @@ const PinDetail = ({ user }) => {
             ))}
           </div>
           <div className="flex flex-wrap mt-6 gap-3">
-            <Link to={`user-profile/${pinDetail?.postedBy?._id}`}>
-              <img className="w-8 h-8 rounded-full cursor-pointer" src={pinDetail?.postedBy?.image} alt="user-profile" />
+            <Link to={`/user-profile/${user?.googleId}`}>
+              <img className="w-8 h-8 rounded-full cursor-pointer" src={user?.image} alt="user-profile" />
             </Link>
             <input 
               type="text"
@@ -144,7 +147,7 @@ const PinDetail = ({ user }) => {
           </div>
         </div>
       </div>
-      {pins?.length > 0 ? (
+      {pins?.length > 0 && !pinsLoading && (
         <>
           <h2 className="text-center font-bold text-2xl mt-8 mb-4">
             More like this
@@ -153,7 +156,8 @@ const PinDetail = ({ user }) => {
             pins={pins}
           />
         </>
-      ) : (
+      )}
+      {pinsLoading && (
         <Spinner message="Loading more pins..." />
       )}
     </>
