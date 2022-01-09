@@ -12,7 +12,7 @@ const Pin = ({ pin: { _id, image, postedBy, destination, save } }) => {
   const [ postHovered, setPostHovered ] = useState(false)
   const [ savingPost, setSavingPost ] = useState(false)
   const user = fetchUser()
-  const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user.googleId))?.length
+  const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.googleId))?.length
 
   const savePin = (id) => {
     if (!alreadySaved) {
@@ -22,10 +22,10 @@ const Pin = ({ pin: { _id, image, postedBy, destination, save } }) => {
         .setIfMissing({ save: [] })
         .insert('after', 'save[-1]', [{
           _key: uuidv4(),
-          userId: user.googleId,
+          userId: user?.googleId,
           postedBy: {
             _type: 'postedBy',
-            _ref: user.googleId
+            _ref: user?.googleId
           }
         }])
         .commit()
@@ -99,7 +99,7 @@ const Pin = ({ pin: { _id, image, postedBy, destination, save } }) => {
                   {destination.length > 15 ? destination.slice(0, 15) : destination}
                 </a>
               )}
-              {postedBy._id === user.googleId && (
+              {postedBy._id === user?.googleId && (
                 <button
                   type="button"
                   className="bg-white p-2 opacity-70 hover:opacity-100 text-dark font-bold  text-base rounded-3xl hover:shadow-md outline-none"
