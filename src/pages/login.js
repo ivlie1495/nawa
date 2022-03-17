@@ -2,11 +2,11 @@ import GoogleLogin from 'react-google-login'
 import { useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import shareVideo from '../assets/share.mp4'
-import logo from '../assets/logo-white.png'
+import logo from '../assets/anime-logo.png'
 import { writeClient } from '../client'
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const responseGoogle = (response) => {
     localStorage.setItem('user', JSON.stringify(response.profileObj))

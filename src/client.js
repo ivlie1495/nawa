@@ -8,7 +8,7 @@ export const writeClient = sanityClient({
   useCdn: false,
   token: process.env.REACT_APP_SANITY_TOKEN,
   ignoreBrowserTokenWarning: true
-});
+})
 
 export const readClient = sanityClient({
   projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
@@ -16,7 +16,7 @@ export const readClient = sanityClient({
   apiVersion: 'v1',
   useCdn: true,
   ignoreBrowserTokenWarning: true
-});
+})
 
 const bulder = imageUrlBuilder(writeClient)
 

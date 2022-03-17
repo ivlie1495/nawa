@@ -13,7 +13,7 @@ const PinDetail = ({ user }) => {
   const [ pinDetail, setPinDetail ] = useState(null)
   const [ comment, setComment ] = useState([])
   const [ addingComment, setAddingComment ] = useState(false)
-  const { pinId } = useParams();
+  const { pinId } = useParams()
 
   const fetchPinDetail = useCallback(() => {
     let query = pinDetailQuery(pinId)

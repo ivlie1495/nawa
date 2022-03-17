@@ -5,7 +5,7 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { SideBar, UserProfile, Pins } from '../components'
 import { readClient } from '../client'
 import { userQuery } from '../utils/data'
-import logo from '../assets/logo.png'
+import logo from '../assets/anime-logo.png'
 import { fetchUser } from '../utils/fetch-user'
 
 const Home = () => {
@@ -26,7 +26,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
+    <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
         <SideBar user={user && user} closeToggle={setToggleSideBar} />
       </div>

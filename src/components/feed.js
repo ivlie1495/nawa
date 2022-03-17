@@ -25,7 +25,7 @@ const Feed = () => {
         setLoading(false)
       })
     }
-  }, [categoryId]);
+  }, [categoryId])
 
   if (loading) {
     return (

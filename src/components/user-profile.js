@@ -18,7 +18,7 @@ const UserProfile = () => {
   const [ text, setText ] = useState('Created')
   const [ activeButton, setActiveButton ] = useState('created')
   const { userId } = useParams()
-  const userInfo = fetchUser();
+  const userInfo = fetchUser()
   const navigate = useNavigate()
 
   const logout = () => {

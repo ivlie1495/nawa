@@ -4,7 +4,7 @@ import { readClient } from '../client'
 import { feedQuery, searchQuery } from '../utils/data'
 import Spinner from './spinner'
 
-const Search = ({ searchTerm, setSearchTerm }) => {
+const Search = ({ searchTerm }) => {
   const [ pins, setPins ] = useState(null)
   const [ loading, setLoading ] = useState(false)
 
